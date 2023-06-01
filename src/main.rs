@@ -78,7 +78,23 @@ fn main() {
 
     // looping through pixels.
     for y in 0..original_image.height() {
-        for x in 0..original_image.width() {}
+        for x in 0..original_image.width() {
+            let pixel = original_image.get_pixel(x, y);
+            let pixel_lumen = calculate_lumen((
+                normalize(pixel.0[0]),
+                normalize(pixel.0[1]),
+                normalize(pixel.0[2]),
+            ));
+            let mut weight = 1.0 - f32::sqrt(pixel_lumen);
+            weight = 1.0_f32.lerp(weight, args.lumen);
+
+            let new_pixel =
+                calculate_pixel(pixel, weight, args.intensity, noise[y as usize][x as usize]);
+
+            new_image.put_pixel(x, y, new_pixel);
+
+            // println!("{:?} -> {:?}", pixel, new_pixel);
+        }
     }
 
     // saving buffer to disk.
