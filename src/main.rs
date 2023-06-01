@@ -45,9 +45,9 @@ fn normalize(value: u8) -> f32 {
 
 // calculate final value.
 fn calculate_pixel(pixel: Rgba<u8>, weight: f32, intensity: f32, noise_value: f32) -> Rgb<u8> {
-    let r = (pixel.0[0] as f32 * 2.0) * weight * intensity * noise_value;
-    let g = (pixel.0[1] as f32 * 2.0) * weight * intensity * noise_value;
-    let b = (pixel.0[2] as f32 * 2.0) * weight * intensity * noise_value;
+    let r = pixel.0[0] as f32 + pixel.0[0] as f32 * weight * intensity * noise_value;
+    let g = pixel.0[1] as f32 + pixel.0[1] as f32 * weight * intensity * noise_value;
+    let b = pixel.0[2] as f32 + pixel.0[2] as f32 * weight * intensity * noise_value;
     Rgb([r as u8, g as u8, b as u8])
 }
 
@@ -74,8 +74,10 @@ fn main() {
     generate_noise(original_image.width(), original_image.height(), &mut noise);
 
     // result image buffer.
+    println!("Generating new image buffer.");
     let mut new_image = RgbImage::new(original_image.width(), original_image.height());
 
+    println!("Looping through pixels.");
     // looping through pixels.
     for y in 0..original_image.height() {
         for x in 0..original_image.width() {
