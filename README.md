@@ -22,7 +22,7 @@ cargo build
 put your `"your_image.jpg"` in the build folder, same place the `main` executable is.
 
 ```sh
-main.exe --filename "your_image.jpg" i --intensity 1.0 --lumen 0.5
+main.exe --filename "your_image.jpg" --intensity 1.0 --lumen 0.5
 ```
 
 Intensity is the custom value to change the colors overall, with testing i found keeping its value close to 1.0 works best.
