@@ -11,7 +11,7 @@ Film grain or granularity is the random optical texture of processed photographi
 git clone https://github.com/prashantrahul141/film-grain-filter
 ```
 
-2. Build using cargo.
+2. Build using cargo, or download binaries from the <a href="https://github.com/prashantrahul141/film-grain-filter/releases">releases page</a>.
 
 ```sh
 cargo build
